@@ -1,0 +1,88 @@
+
+CREATE TABLE Users
+(
+    UserID NUMBER NOT NULL CONSTRAINT Users_PK PRIMARY  KEY,
+    Name VARCHAR2(30),
+    Email VARCHAR2(30) UNIQUE,
+    Password VARCHAR2(20),
+    RoleID NUMBER(2),
+    CONSTRAINT Users_Roll_FK FOREIGN KEY(RoleID) REFERENCES Role(RoleID)
+);
+
+CREATE TABLE Role
+(
+    RoleID NUMBER CONSTRAINT Role_PK PRIMARY KEY,
+    Name VARCHAR2(26) UNIQUE
+);
+
+CREATE TABLE Department
+(
+    DeptID NUMBER CONSTRAINT Dept_PK PRIMARY KEY,
+    Name VARCHAR2(36) UNIQUE
+);
+
+CREATE TABLE Interns
+(
+    InternID VARCHAR2(16) CONSTRAINT Intern_PK PRIMARY KEY,
+    Name VARCHAR2(30),
+    Email VARCHAR2(30) UNIQUE,
+    Phone NUMBER(14),
+    DeptID NUMBER ,
+    CONSTRAINT Interns_Department_FK FOREIGN KEY(DeptID) REFERENCES Department(DeptID)
+);
+
+CREATE TABLE Interns_Projects
+(
+    ProjectID VARCHAR2(16) CONSTRAINT Interns__Projects_PK PRIMARY KEY,
+    Title VARCHAR2(60) UNIQUE,
+    StartDate DATE,
+    EndDate DATE
+);
+
+CREATE TABLE I_Projects
+(
+    IP_ID NUMBER CONSTRAINT Interns_IP_PK PRIMARY KEY ,
+    InternID VARCHAR2(16),
+    ProjectID VARCHAR2(16),
+    CONSTRAINT Interns_IP_FK FOREIGN KEY(InternID) REFERENCES Interns(InternID),
+    CONSTRAINT Projects_IP_FK FOREIGN KEY(ProjectID) REFERENCES Interns_Projects(ProjectID)
+);
+
+
+CREATE TABLE Trainer 
+(
+    TrainerID VARCHAR2(16) CONSTRAINT Trainer_PK PRIMARY KEY,
+    Name VARCHAR2(30),
+    Email VARCHAR2(30) UNIQUE,
+    Phone NUMBER(14),
+    DeptID NUMBER,
+    CONSTRAINT Trainer_Department_FK FOREIGN KEY(DeptID) REFERENCES Department(DeptID)
+);
+
+CREATE TABLE TrainingPrograms
+(
+    TP_ID VARCHAR2(16) CONSTRAINT Training_Program_PK PRIMARY KEY,
+    Title VARCHAR2(30) UNIQUE,
+    StartDate DATE,
+    EndDate DATE,
+    TrainerID VARCHAR2(16),
+    CONSTRAINT Training_Program_FK FOREIGN KEY(TrainerID) REFERENCES Trainer(TrainerID)
+);
+
+CREATE TABLE Interns_trainers
+(
+    IT_ID NUMBER CONSTRAINT Interns_Trainers_PK PRIMARY KEY,
+    TrainerID VARCHAR2(16),
+    InternID VARCHAR2(16),
+    CONSTRAINT Interns_Trainers_FK FOREIGN KEY(TrainerID) REFERENCES Trainer(TrainerID),
+    CONSTRAINT Interns_Trainers_Intern_FK FOREIGN KEY(InternID) REFERENCES Interns(InternID)
+);
+
+CREATE TABLE Interns_Training_Program
+(
+    ITP_ID NUMBER CONSTRAINT Intern_Training_Program_PK PRIMARY KEY,
+    TP_ID VARCHAR2(16),
+    InternID VARCHAR2(16),
+    CONSTRAINT ITP_TP_FK FOREIGN KEY(TP_ID) REFERENCES TrainingPrograms(TP_ID),
+    CONSTRAINT ITP_Interns_FK FOREIGN KEY(InternID) REFERENCES Interns(InternID)
+);
