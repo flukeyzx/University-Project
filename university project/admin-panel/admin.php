@@ -1,8 +1,17 @@
 <?php
     include "../connection.php";
-
+    
     $sql = "SELECT * FROM USERS";
     $result = sqlsrv_query($conn, $sql);
+
+    function rowCount($tableName){
+        global $conn;
+        $sql2 = "SELECT COUNT(*) AS total_rows FROM $tableName";
+        $result2 = sqlsrv_query($conn, $sql2);
+        $rowCount = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC);
+        $totalRows = $rowCount['total_rows'];
+        return $totalRows;
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -37,25 +46,25 @@
                 <div class="section-1">
                     <i class="fa-solid fa-magnifying-glass-chart"></i>
                     <h4>Total Interns</h4>
-                    <h2>35</h2>
+                    <h2><?php echo rowCount('INTERNS') ?></h2>
                 </div>
 
                 <div class="section-2">
                     <i class="fa-solid fa-user-nurse"></i>
                     <h4>Total Trainers</h4>
-                    <h2>10</h2>
+                    <h2><?php echo rowCount('TRAINER') ?></h2>
                 </div>
 
                 <div class="section-3">
                     <i class="fa-solid fa-user-tie"></i>
-                    <h4>Total Employees</h4>
-                    <h2>60</h2>
+                    <h4>Total Users</h4>
+                    <h2><?php echo rowCount('USERS') ?></h2>
                 </div>
 
                 <div class="section-4">
                     <i class="fa-solid fa-list-check"></i>
                     <h4>Total Programs</h4>
-                    <h2>10</h2>
+                    <h2><?php echo rowCount('TrainingPrograms') ?></h2>
                 </div>
             </div>
             <div class="table-section">
@@ -110,7 +119,7 @@
         <!-- Main Section End -->
 
     </div>
-
+    <?php sqlsrv_close($conn); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="./scripts/admin.js"></script>
 </body>

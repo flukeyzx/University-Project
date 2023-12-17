@@ -63,7 +63,7 @@
                         <?php echo $row['Phone']; ?>
                     </td> 
                     <td>
-                        <button class="btn-1">Update</button>
+                        <a href="interns-update.php?id=<?php echo $row['InternID'] ?>"><button class="btn-1">Update</button></a>
                         <button class="btn-2">Delete</button>
                     </td>     
                 </tr>

@@ -200,7 +200,7 @@ b{
     color: var(--primary);
 }
 
-.left > .sidebar > a{
+.left > .sidebar > a:focus{
     background: var(--light);
     color: var(--primary);
     margin-left: 0;
