@@ -707,5 +707,18 @@ tbody td .btn-2:hover{
     opacity: 0.5;
 }
 
+#add{
+    text-decoration: none;
+}
+
+#add .fa-plus{
+    background: var(--primary);
+    font-size: 2.2rem;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+}
 
 

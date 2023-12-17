@@ -22,56 +22,57 @@
 </head>
 <body>
     <div class="container">
-    <?php 
-        include "sidebar.php";
-    ?>
-    <div class="table-section">
-        <table>
-            <h1>Total Interns</h1>
-            <thead>
-                <tr>
-                    <th>
-                        Intern Id
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Phone
-                    </th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                <?php
-                        while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                ?>
-                <tr>
-                    <td>
-                        <?php echo $row['InternID']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Name']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Email']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Phone']; ?>
-                    </td> 
-                    <td>
-                        <a href="interns-update.php?id=<?php echo $row['InternID'] ?>"><button class="btn-1">Update</button></a>
-                        <a href="interns-delete.php?id=<?php echo $row['InternID'] ?>"><button class="btn-2">Delete</button></a>
-                    </td>     
-                </tr>
-                <?php } ?> 
-            </tbody>
-            
-        </table>
-    </div>
+        <?php 
+            include "sidebar.php";
+        ?>
+        <div class="table-section">
+            <table>
+                <h1>Total Interns</h1>
+                <thead>
+                    <tr>
+                        <th>
+                            Intern Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <?php
+                            while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $row['InternID']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Email']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Phone']; ?>
+                        </td> 
+                        <td>
+                            <a href="interns-update.php?id=<?php echo $row['InternID'] ?>"><button class="btn-1">Update</button></a>
+                            <a href="interns-delete.php?id=<?php echo $row['InternID'] ?>"><button class="btn-2">Delete</button></a>
+                        </td>     
+                    </tr>
+                    <?php } ?> 
+                </tbody>
+                
+            </table>
+        </div>
+        <a href="interns-add.php" id="add"><i class="fa-solid fa-plus"></i></a>
     </div>
     <script type="module" src="./scripts/admin.js"></script>
 </body>
