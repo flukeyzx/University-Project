@@ -106,7 +106,7 @@
                             </td> 
                             <td>
                                 <a href="user-update.php?id= <?php echo $row['UserID'] ?>"><button class="btn-1">Update</button></a>
-                                <button class="btn-2">Delete</button>
+                                <a href="user-delete.php?id= <?php echo $row['UserID'] ?>"><button class="btn-2">Delete</button></a>
                             </td>     
                         </tr>
                         <?php } ?> 

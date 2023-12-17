@@ -16,4 +16,6 @@
             header("Location: admin.php");
         } 
     }
+
+    sqlsrv_close($conn);
 ?>
