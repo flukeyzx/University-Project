@@ -1,5 +1,6 @@
 <?php
     include "../connection.php";  
+    ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -95,4 +96,5 @@
 
 <?php 
     sqlsrv_close($conn);
+    ob_end_flush();
 ?>

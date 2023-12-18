@@ -1,8 +1,25 @@
 <?php
     include "../connection.php";
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM Trainer WHERE TrainerID = '$id'";
+        $result = sqlsrv_query($conn, $sql);
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
-    $sql = "SELECT * FROM INTERNS";
-    $result = sqlsrv_query($conn, $sql);
+        if(isset($_POST['submit'])){
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $sql2 = "UPDATE Trainer
+            SET Name = '$name', 
+            Email = '$email', 
+            Phone = $phone
+            WHERE TrainerID = '$id'";
+    
+            $result = sqlsrv_query($conn, $sql2) or die("Query failed");  
+        }
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +42,28 @@
     <?php 
         include "sidebar.php";
     ?>
-    <div class="table-section">
-        
-    </div>
+    <div class="training-section">
+        <h1>Update Trainer</h1>
+        <div class="form-container">
+            <form action="update-trainer.php?id=<?php echo $row['TrainerID'] ?>" method="post" class="training-form">
+                <label>InternID</label>
+                <input type="text" name="id" disabled value="<?php echo $row['TrainerID'] ?>">
+                <label>Name</label>
+                <input type="text" name="name" required value="<?php echo $row['Name'] ?>">
+                <label>Email</label>
+                <input type="email" name="email" required value="<?php echo $row['Email'] ?>" >
+                <label>Phone</label>
+                <input type="tel" name="phone" required value="<?php echo $row['Phone'] ?>">
+                <!-- <label>Department</label>
+                <input type="text" name="phone" required value="<?php echo $row['department'] ?>"> -->
+                <button type="submit" name="submit">Update</button>
+            </form>
+        </div>
     </div>
     <script type="module" src="./scripts/admin.js"></script>
 </body>
 </html>
+
+<?php 
+    sqlsrv_close($conn);
+?>

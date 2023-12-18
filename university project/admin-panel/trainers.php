@@ -25,53 +25,54 @@
     <?php 
         include "sidebar.php";
     ?>
-    <div class="table-section">
-        <table>
-            <h1>Total Interns</h1>
-            <thead>
-                <tr>
-                    <th>
-                        Intern Id
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Phone
-                    </th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                <?php
-                        while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                ?>
-                <tr>
-                    <td>
-                        <?php echo $row['TrainerID']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Name']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Email']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Phone']; ?>
-                    </td> 
-                    <td>
-                        <a href="trainers-update.php?id=<?php echo $row['TrainerID'] ?>"><button class="btn-1">Update</button></a>
-                        <button class="btn-2">Delete</button>
-                    </td>     
-                </tr>
-                <?php } ?> 
-            </tbody>
-            
-        </table>
-    </div>
+        <div class="table-section">
+            <table>
+                <h1>Total Trainers</h1>
+                <thead>
+                    <tr>
+                        <th>
+                            Intern Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <?php
+                            while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $row['TrainerID']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Email']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Phone']; ?>
+                        </td> 
+                        <td>
+                            <a href="trainers-update.php?id=<?php echo $row['TrainerID'] ?>"><button class="btn-1">Update</button></a>
+                            <a href="trainers-delete.php?id=<?php echo $row['TrainerID'] ?>"><button class="btn-2">Delete</button></a>
+                        </td>     
+                    </tr>
+                    <?php } ?> 
+                </tbody>
+                
+            </table>
+        </div>
+    <a href="trainers-add.php" id="add"><i class="fa-solid fa-plus"></i></a>
     </div>
     
 </body>
