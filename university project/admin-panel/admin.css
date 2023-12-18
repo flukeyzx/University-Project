@@ -721,4 +721,11 @@ tbody td .btn-2:hover{
     bottom: 2rem;
 }
 
+#error{
+    position: absolute;
+    color: crimson;
+    font-size: 2.2rem;
+    right: 35%;
+    bottom: 14%;
+}
 

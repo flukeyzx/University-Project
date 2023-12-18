@@ -81,16 +81,21 @@
                 $deptID  = 6;
                 break;
         }
-            
-
-        $sql = "INSERT INTO Interns 
+        $query = "SELECT * FROM Interns WHERE email = '$email'"; 
+        $query_result = sqlsrv_query($conn, $query);
+        if($query_result){
+            echo "<div id='error'>Email already exists</div>";
+        } else {
+            $sql = "INSERT INTO Interns 
                 VALUES ('$id', '$name', '$email', $phone, $deptID)";
            
-        $result = sqlsrv_query($conn, $sql) or die("Query Failed");
-        
-        if($result){
-            header("Location: ./interns.php");
+            $result = sqlsrv_query($conn, $sql) or die("Query Failed");
+            
+            if($result){
+                header("Location: ./interns.php");
+            }
         }
+        
     }
 ?>
 
