@@ -24,11 +24,11 @@
         <div class="sign-up">
             <form action="signup.php" method="post">
                 <label for="check" aria-hidden="true">Sign up</label>
-                <input type="text" name="text" placeholder="Enter your Name" required>
-                <input type="email" name="email" placeholder="Enter your E-mail" required>
+                <input type="text" name="text" placeholder="Enter your Name" required  maxlength="40">
+                <input type="email" name="email" placeholder="Enter your E-mail" required maxlength="40">
                 <p class="email-error">This Email address is already in use.</p>
-                <input type="password" name="password1" placeholder="Create your password" required>
-                <input type="password" name="password2" placeholder="Confirm your password" required>
+                <input type="password" name="password1" id="password1" placeholder="Create your password" oninput="validatePassword()" required>
+                <input type="password" name="password2" id="password2" placeholder="Confirm your password" oninput="validatePassword()" required>
                 <p class="error">Both passwords must be the same.</p>
                 <button name="signup">Sign up</button>
                 <p class="success">Registration successful.</p>
@@ -103,4 +103,21 @@
     <?php 
         sqlsrv_close($conn);
     ?>
+
+    <script>
+        function validatePassword() {
+            let password1Input = document.getElementById('password1');
+            let password2Input = document.getElementById('password2');
+            let passwordError = document.querySelector('.error');
+            console.log(password1Input)
+            if (password1Input.value.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                password1Input.setCustomValidity('Password must be at least 8 characters long.');
+            } else {
+                passwordError.textContent = '';
+                password1Input.setCustomValidity('');
+                password2Input.setCustomValidity('');
+            }
+        }
+    </script>
 </body>
