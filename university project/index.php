@@ -37,8 +37,11 @@
               class="btn btn-info btn-lg"
               data-bs-toggle="modal"
               data-bs-target="#enroll"
+              onclick="<?php if(!isset($_SESSION['name'])){
+                header("Location: signup.php");
+              } ?>"
             >
-              Start The Enrollment
+            Start The Enrollment
             </button>
           </div>
           <img
@@ -465,22 +468,39 @@
             <p class="lead">Fill out this form and we will get back to you</p>
             <form>
               <div class="mb-3">
-                <label for="first-name" class="col-form-label">
+                <label for="name" class="col-form-label">
                   Name:
                 </label>
-                <input type="text" class="form-control" id="name" />
+                <input type="text" class="form-control" id="name" placeholder="Enter your name." required value="<?php echo $_SESSION['name'] ?>"/>
               </div>
               <div class="mb-3">
-                <label for="last-name" class="col-form-label">Email:</label>
-                <input type="text" class="form-control" id="email" />
+                <label for="email" class="col-form-label" >Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email." required value="<?php echo $_SESSION['email'] ?>"/>
               </div>
               <div class="mb-3">
-                <label for="email" class="col-form-label">Department:</label>
-                <input type="email" class="form-control" id="department" />
+                <label for="phone" class="col-form-label" >Phone:</label>
+                <input type="tel" class="form-control" id="phone" pattern="[0-9]+" placeholder="Enter your Phone number." required/>
               </div>
               <div class="mb-3">
-                <label for="phone" class="col-form-label">Position:</label>
-                <input type="tel" class="form-control" id="position" />
+                <label for="department" class="col-form-label" required>Department:</label>
+                <select class="form-control" id="department" required>
+                    <option value="Select Department" disabled selected>Select Department</option>
+                    <option value="Computer Science">1. Computer Science</option>
+                    <option value="Machine Learning">2. Machine Learning</option>
+                    <option value="Data Engineering">3. Data Engineering</option>
+                    <option value="Information Technology">4. Information Technology</option>
+                    <option value="Cyber Security">5. Cyber Security</option>
+                    <option value="Software Engineering">6. Software Engineering</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="position" class="col-form-label" required>Position:</label>
+                <select class="form-control" id="position" required>
+                    <option value="Select Position" disabled selected>Select Position</option>
+                    <option value="Intern">Intern</option>
+                    <option value="Trainer">Trainer</option>
+                    <option value="Full Time">Developer</option>
+                </select>
               </div>
             </form>
           </div>
