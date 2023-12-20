@@ -26,48 +26,57 @@
                 <label for="check" aria-hidden="true">Sign up</label>
                 <input type="text" name="text" placeholder="Enter your Name" required>
                 <input type="email" name="email" placeholder="Enter your E-mail" required>
-                <input type="password" name="password" placeholder="Create your password" required>
+                <p class="email-error">This Email address is already in use.</p>
+                <input type="password" name="password1" placeholder="Create your password" required>
+                <input type="password" name="password2" placeholder="Confirm your password" required>
+                <p class="error">Both passwords must be the same.</p>
                 <button name="signup">Sign up</button>
+                <p class="success">Registration successful.</p>
+                <p class="login-error">Your Email or Password is incorrect.</p> 
             </form>
         </div>
         <div class="log-in">
             <form action="signup.php" method="post">
                 <label for="check" aria-hidden="true">Login</label>
                 <input type="email" name="log-email" placeholder="Enter your E-mail" required>
-                <input type="password" name="log-password" placeholder="Create your password" required>
+                <input type="password" name="log-password" placeholder="Enter your password" required>
+                
                 <button name="login">Log in</button>
-                <!-- <?php
-                    if(!$result) {
-                        ?>
-                <div class="error">
-                    Invalid Username or password    
-                </div>
-                <?php } ?> -->
             </form>
         </div>
-    </div>    
+    </div>   
 
     <?php 
         include 'connection.php';
     ?>
     <?php 
-        $role = 2;
+        $roleId = 2;
         //for sign up
         if(isset($_POST['signup'])) {
             $name = $_POST['text'];
-            $email = $_POST['email'];
-            $password = md5($_POST['password']);
-            $roleId = 2;
+            $email = trim($_POST['email']);
+            $password1 = $_POST['password1'];
+            $password2 = $_POST['password2'];
 
-            $sql = "USE Test;";
-            $sql .= "INSERT INTO Users VALUES ('$name', '$email', '$password', $roleId);";
-            $result = sqlsrv_query($conn, $sql) or die("SQL Query Failed.");
+            $sql2 = "SELECT * FROM Users WHERE Email = '$email';";
+            $query = sqlsrv_query($conn, $sql2);
+            $numRows = sqlsrv_has_rows($query);
+            if($numRows > 0){
+                ?> <style>.email-error{ display: block;} </style> <?php
+            } else if($password1 != $password2){
+                ?> <style>.error{ display: block;} </style> <?php
+            } else {
+                $sql = "USE Test;";
+                $sql .= "INSERT INTO Users VALUES ('$name', '$email', '$password1', $roleId);";
+                $result = sqlsrv_query($conn, $sql) or die("SQL Query Failed.");
+                ?> <style>.success{display: block}</style> <?php
+            }      
         }
 
         // for login
         if(isset($_POST['login'])) {
             $lEmail = $_POST['log-email'];
-            $lPass = md5($_POST['log-password']);
+            $lPass = $_POST['log-password'];
             $sql = "SELECT * FROM Users
             WHERE Email = '$lEmail' AND Password = '$lPass'";
             $result = sqlsrv_query($conn, $sql);
@@ -85,8 +94,9 @@
                 }
                     
             } 
-            else 
-                echo '<script>alert("Invalid username or password.")</script';
+            else {
+                ?> <style>.login-error{ display: block;} </style> <?php
+            }    
         }
     ?> 
 
