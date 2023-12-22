@@ -1,50 +1,61 @@
-:root{
-    --primary : #0dcaf0;
+:root {
+  --primary: #0dcaf0;
 }
 
-nav .left-section  .logo{
-    font-size: 40px;
-    font-weight: 500;
-    cursor: pointer;
+nav .left-section .logo {
+  font-size: 40px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-nav .left-section  .logo span{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bold;
+nav .left-section .logo span {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
 }
 
-nav .left-section .logo .logo-1{
-    color: #fff;
+nav .left-section .logo .logo-1 {
+  color: #fff;
 }
 
-nav .left-section .logo .logo-2{
-    font-size: 40px;
-    color: var(--primary);
+nav .left-section .logo .logo-2 {
+  font-size: 40px;
+  color: var(--primary);
 }
 
-
-.to-up{
-    position: fixed;
-    text-decoration: none;
-    background: black;
-    bottom: 16px;
-    right: 32px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    color: #fff;
-    text-decoration: none;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s;
+.to-up {
+  position: fixed;
+  text-decoration: none;
+  background: black;
+  bottom: 16px;
+  right: 32px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
 }
 
-.to-up.active{
-    bottom: 32px;
-    pointer-events: auto;
-    opacity: 1;
+.to-up.active {
+  bottom: 32px;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.email-error {
+  color: #af4242;
+  background-color: #fbd8de;
+  padding: 0.7rem;
+  width: 64%;
+  margin: 1rem auto;
+  transform: translateY(-0.7rem);
+  font-size: 1.1rem;
+  display: none;
 }

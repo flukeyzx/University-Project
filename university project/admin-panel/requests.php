@@ -1,7 +1,9 @@
 <?php
     include "../connection.php";
 
-    $sql = "SELECT * FROM Requests";
+    $sql = "SELECT Requests.RequestID Id, Requests.Name Name , Requests.Email Email,
+            Requests.Phone Phone, Department.Name Department, Requests.Position Position FROM Requests
+            INNER JOIN Department ON Requests.Department = Department.DeptID";
     $result = sqlsrv_query($conn, $sql);
 ?>
 
@@ -22,56 +24,70 @@
 </head>
 <body>
     <div class="container">
-    <?php 
-        include "sidebar.php";
-    ?>
-    <div class="table-section">
-        <table>
-            <h1>Total Interns</h1>
-            <thead>
-                <tr>
-                    <th>
-                        Intern Id
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Password
-                    </th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                <?php
-                        while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                ?>
-                <tr>
-                    <td>
-                        <?php echo $row['RequestID']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Name']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Email']; ?>
-                    </td>
-                    <td>
-                        <?php echo $row['Password']; ?>
-                    </td> 
-                    <td>
-                        <button class="btn-1">Accept</button>
-                        <button class="btn-2">Decline</button>
-                    </td>     
-                </tr>
-                <?php } ?> 
-            </tbody>
-            
-        </table>
-    </div>
+        <?php 
+            include "sidebar.php";
+        ?>
+        <div class="table-section">
+            <table>
+                <h1>Total Requests</h1>
+                <thead>
+                    <tr>
+                        <th>
+                            Request Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                        <th>
+                            Department
+                        </th>
+                        <th>
+                            Position
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <?php
+                            while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $row['Id']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Email']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['Phone']; ?>
+                        </td> 
+                        <td>
+                            <?php echo $row['Department']; ?>
+                        </td> 
+                        <td>
+                            <?php echo $row['Position']; ?>
+                        </td> 
+                        <td>
+                            <a href="check.php?id=<?php echo $row['Id'] ?>&name=<?php echo $row['Name'] ?>&email=<?php echo $row['Email'] ?>&phone=<?php echo $row['Phone'] ?>&depart=<?php echo $row['Department'] ?>&position=<?php echo $row['Position'] ?>"><button class="btn-1">Accept</button></a>
+                            <a href="delete-requests.php?id=<?php echo $row['Id'] ?>"><button class="btn-2">Decline</button></a>
+                        </td>     
+                    </tr>
+                    <?php } ?> 
+                </tbody>
+
+                
+                
+            </table>
+        </div>
     </div>
     
 </body>
