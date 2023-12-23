@@ -4,10 +4,11 @@
         $id =   $_GET['id'];
         $position = $_GET['position'];
         if($position == 'Intern'){
-            $url = "http://localhost/Project%20website/university%20project/admin-panel/accept.php?id=$id";
+            $url = "http://localhost/Project%20website/university%20project/admin-panel/accept-intern.php?id=$id";
             header("Location: $url");
         } else if($position == 'Trainer'){
-            header("Location: accept-trainer.php");
+            $url = "http://localhost/Project%20website/university%20project/admin-panel/accept-trainer.php?id=$id";
+            header("Location: $url");
         }
     }
 ?>

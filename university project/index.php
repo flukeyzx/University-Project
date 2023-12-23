@@ -502,7 +502,6 @@
                         <option value="Select Position" disabled selected>Select Position</option>
                         <option value="Intern">Intern</option>
                         <option value="Trainer">Trainer</option>
-                        <option value="Full Time">Developer</option>
                     </select>
                 </div>
                 

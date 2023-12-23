@@ -54,8 +54,6 @@
                 <input type="email" name="email" required value="<?php echo $row['Email'] ?>" >
                 <label>Phone</label>
                 <input type="tel" name="phone" required value="<?php echo $row['Phone'] ?>">
-                <!-- <label>Department</label>
-                <input type="text" name="phone" required value="<?php echo $row['department'] ?>"> -->
                 <button type="submit" name="submit">Update</button>
             </form>
         </div>

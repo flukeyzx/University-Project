@@ -1,10 +1,11 @@
 <?php
     include "../connection.php";  
     ob_start();
+    $globalId = $_GET['id'];
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $sql = "SELECT * FROM Requests WHERE RequestID = $id";
-        $query = sqlsrv_query($conn, $sql) or die("Query Failed");
+        $query = sqlsrv_query($conn, $sql) or die("Query get Failed");
         $row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
     }
 ?>
@@ -32,17 +33,15 @@
     <div class="training-section">
         <h1>Add Intern</h1>
         <div class="form-container">
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="training-form">
+            <form action="<?php echo $_SERVER['PHP_SELF']. '?id='. $globalId  ?>" method="post" class="training-form">
                 <label>InternID</label>
                 <input type="text" name="id">
-                <label>Name</label>
-                <input type="text" name="name" required value="<?php echo $row['Name'] ?>">
-                <label>Email</label>
-                <input type="email" name="email" required value="<?php echo $row['Email'] ?>">
-                <label>Phone</label>
-                <input type="tel" name="phone" required value="<?php echo $row['Phone'] ?>">
-                <label for="department">Department</label>
-                <input type="text" name="department" required value="<?php echo $row['Department'] ?>">
+                <p id="error-3">This id is already Taken.</p>
+                <input type="hidden" name="globalId" value=" <?php echo $globalId ?>">
+                <input type="hidden" name="name" required value="<?php echo $row['Name'] ?>">
+                <input type="hidden" name="email" required value="<?php echo $row['Email'] ?>">
+                <input type="hidden" name="phone" required value="<?php echo $row['Phone'] ?>">
+                <input type="hidden" name="department" required value="<?php echo $row['Department'] ?>">
                 <button type="submit" name="submit">Add Intern</button>
             </form>
         </div>
@@ -52,25 +51,31 @@
 </html>
 
 <?php 
-    $globalId = $_GET['id'];
     if(isset($_POST['submit'])){
         $id = $_POST['id'];
+        $globalId = $_POST['globalId'];
         $name = $_POST['name'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $dept = $_POST['department'];
+        
+        $sql_2 = "SELECT * FROM Interns WHERE InternID = '$id'";
+        $result_2 = sqlsrv_query($conn, $sql_2);
 
-
-        $sql = "INSERT INTO Interns 
+        if(sqlsrv_has_rows($result_2)){
+            ?> <style>#error-3{ display: block;} </style> <?php
+        } else {
+            $sql = "INSERT INTO Interns 
             VALUES ('$id', '$name', '$email', $phone, $dept)";
         
-        $result = sqlsrv_query($conn, $sql) or die("Query Failed");
-        
-        if($result){
-            $query = "DELETE FROM Requests WHERE Email = '$email'";
-            $delete = sqlsrv_query($conn, $query) or die("Query Failed");
-            header("Location: ./interns.php");
-        }      
+            $result = sqlsrv_query($conn, $sql) or die("Query insert Failed");
+            
+            if($result){
+                $query = "DELETE FROM Requests WHERE Email = '$email'";
+                $delete = sqlsrv_query($conn, $query) or die("Query delete Failed");
+                header("Location: ./interns.php");
+            }
+         }      
     }
 ?>
 
