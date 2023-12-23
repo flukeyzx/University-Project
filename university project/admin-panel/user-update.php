@@ -6,18 +6,22 @@
         $result = sqlsrv_query($conn, $sql);
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
-        if(isset($_POST['submit'])){
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $sql2 = "UPDATE USERS
-            SET Name = '$name', 
-            Email = '$email', 
-            Password = '$password'
-            WHERE UserId = $id";
-    
-            $result = sqlsrv_query($conn, $sql2) or die("Query failed");  
-        }
+        // if(isset($_POST['submit'])){
+        //     $name = $_POST['name'];
+        //     $email = trim($_POST['email']);
+        //     $password = $_POST['password'];
+
+            
+        //         $sql2 = "UPDATE USERS
+        //         SET Name = '$name', 
+        //         Email = '$email', 
+        //         Password = '$password'
+        //         WHERE UserId = $id";
+        
+        //         $result = sqlsrv_query($conn, $sql2) or die("Query failed"); 
+        //     }
+             
+        // }
     }
     
 ?>
@@ -52,6 +56,7 @@
                 <input type="text" name="name" required value="<?php echo $row['Name'] ?>">
                 <label>Email</label>
                 <input type="email" name="email" required value="<?php echo $row['Email'] ?>" >
+                <p id="error-3">This Email is already taken.</p>
                 <label>Password</label>
                 <input type="text" name="password" required value="<?php echo $row['Password'] ?>">
                 <button type="submit" name="submit">Update</button>

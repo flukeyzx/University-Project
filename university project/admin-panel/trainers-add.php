@@ -29,12 +29,15 @@
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="training-form">
                 <label>TrainerID</label>
                 <input type="text" name="id">
+                <p id="error-2">This Id is already taken.</p>
                 <label>Name</label>
                 <input type="text" name="name" required>
                 <label>Email</label>
                 <input type="email" name="email" required>
+                <p id="error-3">This Email is already taken.</p>
                 <label>Phone</label>
                 <input type="tel" name="phone" required>
+                <p id="error-4">This Phone is already taken.</p>
                 <label for="department">Department</label>
                 <select name="department" id="department">
                     <option selected disabled>Select Department</option>
@@ -82,14 +85,28 @@
                 break;
         }
             
+        $query = "SELECT * FROM Trainer WHERE email = '$email'"; 
+        $query_result = sqlsrv_query($conn, $query);
+        $query_2 = "SELECT * FROM Trainer WHERE TrainerID = '$id';";
+        $query_2_result = sqlsrv_query($conn, $query_2);
+        $query_3 = "SELECT * FROM Trainer WHERE Phone = $phone";
+        $query_3_result = sqlsrv_query($conn, $query_3);
 
-        $sql = "INSERT INTO Trainer 
-                VALUES ('$id', '$name', '$email', $phone, $deptID)";
+        if(sqlsrv_has_rows($query_2_result)){
+            ?> <style>#error-2{ display: block;} </style> <?php
+        } else if(sqlsrv_has_rows($query_result)){
+            ?> <style>#error-3{ display: block;} </style> <?php
+        } else if(sqlsrv_has_rows($query_3_result)){
+            ?> <style>#error-4{ display: block;} </style> <?php
+        } else {
+            $sql = "INSERT INTO Trainer 
+            VALUES ('$id', '$name', '$email', $phone, $deptID)";
            
-        $result = sqlsrv_query($conn, $sql) or die("Query Failed");
-        
-        if($result){
-            header("Location: ./trainers.php");
+            $result = sqlsrv_query($conn, $sql) or die("Query Failed");
+            
+            if($result){
+                header("Location: ./trainers.php");
+            }
         }
     }
 ?>

@@ -29,14 +29,17 @@
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="training-form">
                 <label>InternID</label>
                 <input type="text" name="id">
+                <p id="error-2">This Id is already taken.</p>
                 <label>Name</label>
                 <input type="text" name="name" required>
                 <label>Email</label>
                 <input type="email" name="email" required>
+                <p id="error-3">This Email is already taken.</p>
                 <label>Phone</label>
                 <input type="tel" name="phone" required>
+                <p id="error-4">This Phone is already taken.</p>
                 <label for="department">Department</label>
-                <select name="department" id="department">
+                <select name="department" id="department"  required>
                     <option selected disabled>Select Department</option>
                     <option>Computer Science</option>
                     <option>Information Technology</option>
@@ -83,8 +86,17 @@
         }
         $query = "SELECT * FROM Interns WHERE email = '$email'"; 
         $query_result = sqlsrv_query($conn, $query);
-        if($query_result){
-            echo "<div id='error'>Email already exists</div>";
+        $query_2 = "SELECT * FROM Interns WHERE InternID = '$id';";
+        $query_2_result = sqlsrv_query($conn, $query_2);
+        $query_3 = "SELECT * FROM Interns WHERE Phone = $phone";
+        $query_3_result = sqlsrv_query($conn, $query_3);
+
+        if(sqlsrv_has_rows($query_2_result)){
+            ?> <style>#error-2{ display: block;} </style> <?php
+        } else if(sqlsrv_has_rows($query_result)){
+            ?> <style>#error-3{ display: block;} </style> <?php
+        } else if(sqlsrv_has_rows($query_3_result)){
+            ?> <style>#error-4{ display: block;} </style> <?php
         } else {
             $sql = "INSERT INTO Interns 
                 VALUES ('$id', '$name', '$email', $phone, $deptID)";
