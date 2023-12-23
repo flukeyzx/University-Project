@@ -739,3 +739,40 @@ tbody td .btn-2:hover {
   font-size: 1.2rem;
   display: none;
 }
+
+#pagination {
+  text-decoration: none;
+  float: right;
+  margin: 2rem;
+  font-size: 1.6rem;
+}
+
+#pagination li {
+  display: inline-block;
+}
+
+#pagination li a {
+  margin: 0.2rem;
+  height: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#pagination li a:hover {
+  background-color: #434986;
+  color: #fff;
+}
+
+#pagination li a.active {
+  background-color: #3d3f59;
+  color: #fff;
+}
+
+#pagination .fa-chevron-left,
+.fa-chevron-right {
+  font-size: 1.5rem;
+}

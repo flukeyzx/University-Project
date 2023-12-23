@@ -1,7 +1,21 @@
 <?php
     include "../connection.php";
+
+    $limit = 8;
     
-    $sql = "SELECT * FROM USERS";
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+    } else {
+        $page = 1;
+    }
+    $startRow = ($page - 1) * $limit + 1;
+    $endRow = $startRow + $limit - 1;
+    
+    $sql = "SELECT * FROM (
+        SELECT *, ROW_NUMBER() OVER (ORDER BY UserID) AS RowNum
+        FROM USERS
+     ) AS Sub
+     WHERE RowNum BETWEEN $startRow AND $endRow";
     $result = sqlsrv_query($conn, $sql);
 
     function rowCount($tableName){
@@ -113,6 +127,41 @@
                     </tbody>
                        
                 </table>
+
+                <?php 
+                    $query = "SELECT COUNT(*) AS TotalRows FROM USERS";
+                    $result_query = sqlsrv_query($conn, $query);
+
+                    if($result_query){
+                        $rows = sqlsrv_fetch_array($result_query);
+                        $totalRecords = $rows['TotalRows'];
+                        $totalPages = ceil( $totalRecords / $limit );
+
+                        echo '<ul id="pagination">';
+                        if($page > 1){
+                            echo '<li><a href="admin.php?page='.($page - 1).'"><i class="fa-solid fa-chevron-left"></i></a</li>';
+                        }
+                        
+                        for($i = 1; $i <= $totalPages; $i++){
+                            if($i == $page){
+                                $active = "active";
+                            } else {
+                                $active = "";
+                            }
+                            echo '<li><a class="'.$active.'" href="admin.php?page='.$i.'">'.$i.'</a</li>';
+                        }
+                        if($totalPages > $page){
+                            echo '<li><a href="admin.php?page='.($page + 1).'"><i class="fa-solid fa-chevron-right"></i></a</li>';
+                        }
+                        echo ' </ul>';
+                        
+                    }
+                ?>
+
+                
+                    <!-- <li class="active"><a>1</a</li> -->
+    
+               
             </div>
             
         </section>

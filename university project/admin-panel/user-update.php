@@ -5,23 +5,6 @@
         $sql = "SELECT * FROM USERS WHERE UserID = $id";
         $result = sqlsrv_query($conn, $sql);
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-
-        // if(isset($_POST['submit'])){
-        //     $name = $_POST['name'];
-        //     $email = trim($_POST['email']);
-        //     $password = $_POST['password'];
-
-            
-        //         $sql2 = "UPDATE USERS
-        //         SET Name = '$name', 
-        //         Email = '$email', 
-        //         Password = '$password'
-        //         WHERE UserId = $id";
-        
-        //         $result = sqlsrv_query($conn, $sql2) or die("Query failed"); 
-        //     }
-             
-        // }
     }
     
 ?>
