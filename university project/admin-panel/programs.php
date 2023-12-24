@@ -1,8 +1,5 @@
 <?php
     include "../connection.php";
-
-    $sql = "SELECT * FROM INTERNS";
-    $result = sqlsrv_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -28,18 +25,14 @@
     <div class="training-section">
         <h1>Create Training Program</h1>
         <div class="form-container">
-            <form action="" method="" class="training-form">
-                <label>Name</label>
-                <input type="text" name="name" required>
-                <label>Description</label>
-                <textarea cols="40" rows="6"></textarea>
+            <form action="programs.php" method="post" class="training-form">
+                <label>ID</label>
+                <input type="text" name="id" required>
+                <p id="error-2">This Id is already Taken.</p>
+                <label>Title</label>
+                <input type="text" name="title" required>
                 <label>Trainer</label>
-                <select name="trainer">
-                    <option disabled selected>Select trainer</option>
-                    <option>Dr.Amir</option>
-                    <option>Dr.Israr</option>
-                    <option>Dr.Nadeem</option>
-                </select>
+                <input type="text" name="trainer" required>
                 <label>Status</label>
                 <select name="status">
                     <option>Active</option>
@@ -53,8 +46,32 @@
                 <button type="submit" name="submit">Create</button>
             </form>
         </div>
-        <button class="view-btn">View programs</button>
+        <a href="programs-view.php"><button class="view-btn">View programs</button></a>
     </div> 
     
 </body>
 </html>
+
+<?php
+    if(isset($_POST['submit'])){
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $trainerId = $_POST['trainer'];
+        $status = $_POST['status'];
+        $startDate = $_POST['start'];
+        $endDate = $_POST['end'];
+
+        $sql = "SELECT * FROM TrainingPrograms WHERE TP_ID = '$id'";
+        $result = sqlsrv_query($conn, $sql);
+
+        if(sqlsrv_has_rows($result)){
+            ?> <style>#error-2{ display: block;} </style> <?php
+        } else {
+            $query = "INSERT INTO TrainingPrograms
+                      VALUES ('$id', '$title', '$startDate', '$endDate', '$trainerId', '$status')";
+            $stmt = sqlsrv_query($conn, $query);
+        }
+    }
+
+    sqlsrv_close($conn);
+?>

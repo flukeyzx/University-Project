@@ -1,0 +1,55 @@
+#wrapper {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: 6rem;
+}
+
+#wrapper .section {
+  background: var(--light);
+  padding: 1.6rem;
+  height: 25vh;
+  border-radius: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem #28282818;
+  cursor: pointer;
+}
+
+#wrapper .section:hover {
+  box-shadow: none;
+}
+
+#wrapper .section h1 {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+#wrapper .section p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--dark);
+}
+
+#wrapper .section span {
+  text-align: center;
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+#wrapper .section .active {
+  background-color: rgb(186, 199, 165);
+  color: rgb(89, 137, 16);
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+}
+
+#wrapper .section .closed {
+  background-color: rgb(218, 165, 165);
+  color: rgb(133, 27, 18);
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+}
