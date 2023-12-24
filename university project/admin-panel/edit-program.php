@@ -1,4 +1,9 @@
-
+<?php
+    include "../connection.php";
+    if(isset($_GET['id'])){
+        $programId = $_GET['id'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +25,64 @@
         <?php 
             include "sidebar.php";
         ?>
+        <div id="search">
+            <form action="edit-program.php?id=<?php echo $programId ?>" method="post">
+                <label for="">Search Intern</label>
+                <input type="text" name="name" required>
+                <button type="submit" name="submit">Search</button>
+            </form>
+
+            <div id="section">
+            <table>
+                <?php
+                    if(isset($_POST['submit'])){
+                        $search = $_POST['name'];
+
+                        $sql = "SELECT * FROM Interns WHERE InternID = '$search'
+                        OR Name LIKE '%$search%'";
+                        $result = sqlsrv_query($conn, $sql);
+
+                        if($result){
+                            if(sqlsrv_has_rows($result) > 0){
+                                echo '<thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                    </tr>
+                                </thead>';
+
+                                while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
+
+                                echo '<tbody>
+                                        <tr>
+                                            <td>'. $row['InternID'] .'</td>
+                                            <td>'. $row['Name'] .'</td>
+                                            <td>'. $row['Email'] .'</td>
+                                            <td>'. $row['Phone'] .'</td>
+                                            <td><a href="add-intern-program.php?id='.$row['InternID'].'&pid='.$programId.'"><button id="add">Add</button></a></td>
+                                        </tr>
+                                      </tbody>';
+                                    }
+                                 } else {
+                                echo "<h2 id='error'>Data Not Found.</h2>";
+                            }
+
+
+                        }
+                    }
+                ?>
+            </table> 
+        </div>      
+        </div>
+        
     </div>
+
+    
 </body>  
-</html>      
+</html>  
+
+<?php
+
+?>
