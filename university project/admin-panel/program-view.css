@@ -8,19 +8,38 @@
 
 #wrapper .section {
   background: var(--light);
-  padding: 1.6rem;
-  height: 25vh;
+  padding: 1.2rem;
+  height: 28vh;
+  text-align: center;
   border-radius: 1rem;
   box-shadow: 0.2rem 0.2rem 0.5rem #28282818;
   cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
 }
 
 #wrapper .section:hover {
   box-shadow: none;
 }
 
+#wrapper .section .fa-trash-can {
+  position: absolute;
+  right: 0.2rem;
+  top: 0.2rem;
+  background-color: rgb(244, 99, 99);
+  color: rgb(239, 238, 238);
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+#wrapper .section .fa-trash-can:hover {
+  opacity: 0.7;
+}
+
 #wrapper .section h1 {
   text-align: center;
+  font-size: 1.4rem;
   margin-top: 1rem;
   color: var(--primary);
   margin-bottom: 1rem;
@@ -40,6 +59,21 @@
   color: var(--dark);
 }
 
+#button {
+  padding: 0.8rem 4rem;
+  font-size: 1rem;
+  text-align: center;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #fff;
+  background: var(--primary);
+}
+
+#button:hover {
+  opacity: 0.7;
+}
+
 #wrapper .section .active {
   background-color: rgb(186, 199, 165);
   color: rgb(89, 137, 16);
@@ -52,4 +86,12 @@
   color: rgb(133, 27, 18);
   padding: 0.2rem;
   border-radius: 0.3rem;
+}
+
+/* responsive */
+@media screen and (max-width: 1600px) {
+  #wrapper .section h1 {
+    font-size: 1.2rem;
+    padding: 0.2rem;
+  }
 }

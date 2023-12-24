@@ -25,29 +25,6 @@
         <?php 
             include "sidebar.php";
         ?>
-
-        <div id="wrapper">
-            <?php
-                while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-            ?>
-                <div class="section">
-                    <a href="delete-program.php?id=<?php echo $row['TP_ID'] ?>"><i class="fa-regular fa-trash-can"></i></a>
-                    <p><?php echo $row['TP_ID'] ?></p>
-                    <h1> <?php echo $row['Title'] ?></h1>
-                    <span>From <strong><?php echo $row['StartDate']-> format('d-m-Y') ?></strong> to <strong><?php echo $row['EndDate']-> format('d-m-Y') ?></strong></span>
-                    <p>Status: <text class="<?php if($row['Status'] == 'Active'){
-                        echo 'active';
-                    } else {
-                        echo 'closed';
-                    }
-                    ?>"><?php echo $row['Status'] ?></text></p>
-                    <button id="button" type="submit" name="submit" >Edit</button>
-                </div>
-                </a>
-            <?php
-                }  
-            ?>
-        </div>
-    </div>  
+    </div>
 </body>
-</html>
+</html>        
