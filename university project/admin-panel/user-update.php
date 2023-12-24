@@ -36,12 +36,12 @@
                 <label>UserID</label>
                 <input type="number" name="id" disabled value="<?php echo $row['UserID'] ?>">
                 <label>Name</label>
-                <input type="text" name="name" required value="<?php echo $row['Name'] ?>">
+                <input type="text" name="name" required value="<?php echo $row['Name'] ?>" maxlength="50">
                 <label>Email</label>
-                <input type="email" name="email" required value="<?php echo $row['Email'] ?>" >
+                <input type="email" name="email" required value="<?php echo $row['Email'] ?>" maxlength="50">
                 <p id="error-3">This Email is already taken.</p>
                 <label>Password</label>
-                <input type="text" name="password" required value="<?php echo $row['Password'] ?>">
+                <input type="text" name="password" required value="<?php echo $row['Password'] ?>" maxlength="50">
                 <button type="submit" name="submit">Update</button>
             </form>
         </div>

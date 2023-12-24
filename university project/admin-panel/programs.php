@@ -27,12 +27,12 @@
         <div class="form-container">
             <form action="programs.php" method="post" class="training-form">
                 <label>ID</label>
-                <input type="text" name="id" required>
+                <input type="text" name="id" required maxlength="30">
                 <p id="error-2">This Id is already Taken.</p>
                 <label>Title</label>
-                <input type="text" name="title" required>
+                <input type="text" name="title" required  maxlength="80">
                 <label>Trainer</label>
-                <input type="text" name="trainer" required>
+                <input type="text" name="trainer" required maxlength="30">
                 <label>Status</label>
                 <select name="status">
                     <option>Active</option>

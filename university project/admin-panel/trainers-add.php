@@ -28,15 +28,15 @@
         <div class="form-container">
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="training-form">
                 <label>TrainerID</label>
-                <input type="text" name="id">
+                <input type="text" name="id"  maxlength="30">
                 <p id="error-2">This Id is already taken.</p>
                 <label>Name</label>
-                <input type="text" name="name" required>
+                <input type="text" name="name" required maxlength="50">
                 <label>Email</label>
-                <input type="email" name="email" required>
+                <input type="email" name="email" required maxlength="50">
                 <p id="error-3">This Email is already taken.</p>
                 <label>Phone</label>
-                <input type="tel" name="phone" required>
+                <input type="tel" name="phone" required maxlength="15">
                 <p id="error-4">This Phone is already taken.</p>
                 <label for="department">Department</label>
                 <select name="department" id="department">

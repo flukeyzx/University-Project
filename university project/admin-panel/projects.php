@@ -30,7 +30,7 @@
         <div class="form-container">
             <form action="" method="" class="training-form">
                 <label>Name</label>
-                <input type="text" name="name" required>
+                <input type="text" name="name" required maxlength="80">
                 <label>Description</label>
                 <textarea cols="40" rows="6"></textarea>
                 <label>Status</label>

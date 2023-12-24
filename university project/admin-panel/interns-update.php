@@ -47,15 +47,13 @@
         <div class="form-container">
             <form action="update-intern.php?id=<?php echo $row['InternID'] ?>" method="post" class="training-form">
                 <label>InternID</label>
-                <input type="text" name="id" disabled value="<?php echo $row['InternID'] ?>">
+                <input type="text" name="id" disabled value="<?php echo $row['InternID'] ?>" maxlength="30">
                 <label>Name</label>
-                <input type="text" name="name" required value="<?php echo $row['Name'] ?>">
+                <input type="text" name="name" required value="<?php echo $row['Name'] ?>" maxlength="50">
                 <label>Email</label>
-                <input type="email" name="email" required value="<?php echo $row['Email'] ?>" >
+                <input type="email" name="email" required value="<?php echo $row['Email'] ?>" maxlength="50">
                 <label>Phone</label>
-                <input type="tel" name="phone" required value="<?php echo $row['Phone'] ?>">
-                <!-- <label>Department</label>
-                <input type="text" name="phone" required value="<?php echo $row['department'] ?>"> -->
+                <input type="tel" name="phone" required value="<?php echo $row['Phone'] ?>" maxlength="15">
                 <button type="submit" name="submit">Update</button>
             </form>
         </div>
