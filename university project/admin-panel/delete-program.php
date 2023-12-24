@@ -1,8 +1,10 @@
 <?php 
     include "../connection.php";
     $id = $_GET['id'];
-    $sql = "DELETE FROM TrainingPrograms 
-            WHERE TP_ID = '$id'";
+
+    $sql = "DELETE FROM Interns_Training_Program WHERE TP_ID  = '$id';";
+    $sql .= "DELETE FROM TrainingPrograms 
+            WHERE TP_ID = '$id';";
     $result = sqlsrv_query($conn, $sql) or die("Query Failed");
     if($result) {
         header("Location: programs-view.php");
