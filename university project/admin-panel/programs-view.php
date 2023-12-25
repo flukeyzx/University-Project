@@ -41,7 +41,7 @@
                         echo 'closed';
                     }
                     ?>"><?php echo $row['Status'] ?></text></p>
-                    <a href="edit-program.php?id=<?php echo $row['TP_ID']?>"><button id="button" type="submit" name="submit" >Edit</button></a>
+                    <a href="edit-program.php?id=<?php echo $row['TP_ID']?>&status=<?php echo $row['Status'] ?>"><button id="button" type="submit" name="submit" >Edit</button></a>
                 </div>
                 </a>
             <?php

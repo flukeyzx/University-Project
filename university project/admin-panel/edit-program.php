@@ -1,7 +1,8 @@
 <?php
     include "../connection.php";
-    if(isset($_GET['id'])){
+    if(isset($_GET['id']) && isset($_GET['status'])){
         $programId = $_GET['id'];
+        $status =  $_GET['status'];
     }
 ?>
 <!DOCTYPE html>
@@ -26,11 +27,23 @@
             include "sidebar.php";
         ?>
         <div id="search">
-            <form action="edit-program.php?id=<?php echo $programId ?>" method="post">
+
+            <form action="edit-program.php?id=<?php echo $programId ?>&status=<?php echo $status ?>" method="post">
                 <label for="">Search Intern</label>
-                <input type="text" name="name" required>
+                <input type="text" name="name" required <?php if($status == 'Closed'){
+                    echo 'disabled';
+                } ?>>
                 <button type="submit" name="submit">Search</button>
             </form>
+            <form action="edit-program.php?id=<?php echo $programId ?>&status=<?php echo $status ?>" method="post">
+                <label for="">Status</label>
+                <select name="select" id="">
+                    <option value="Active" <?php if($status == 'Active') echo 'selected' ?>>Active</option>
+                    <option value="Closed" <?php if($status == 'Closed') echo 'selected' ?>>Closed</option>
+                </select>
+                <button type="submit" class="change" name="change">Change</button>
+            </form>    
+            
 
             <div id="section">
             <table>
@@ -61,7 +74,7 @@
                                             <td>'. $row['Name'] .'</td>
                                             <td>'. $row['Email'] .'</td>
                                             <td>'. $row['Phone'] .'</td>
-                                            <td><a href="add-intern-program.php?id='.$row['InternID'].'&pid='.$programId.'"><button id="add">Add</button></a></td>
+                                            <td><a href="add-intern-program.php?id='.$row['InternID'].'&pid='.$programId.'&status='.$status.'"><button id="add">Add</button></a></td>
                                         </tr>
                                       </tbody>';
                                     }
@@ -84,5 +97,11 @@
 </html>  
 
 <?php
+    if(isset($_POST['change'])){
+        $select = $_POST['select'];
+        $status = $select;
 
+        header("Location: edit-program.php?id=$programId&status=$status");
+    }
+    sqlsrv_close($conn);
 ?>

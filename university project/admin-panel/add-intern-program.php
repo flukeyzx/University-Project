@@ -1,8 +1,9 @@
 <?php
     include "../connection.php";
-    if(isset($_GET['id']) && isset($_GET['pid'])){
+    if(isset($_GET['id']) && isset($_GET['pid']) && isset($_GET['status'])){
         $id = $_GET['id'];
         $pid = $_GET['pid'];
+        $status= $_GET['status'];
 
         $error_query = "SELECT * FROM Interns_Training_Program 
                         WHERE TP_ID = '$pid' AND InternID = '$id'";
@@ -17,7 +18,7 @@
             $result  = sqlsrv_query($conn, $sql) or die("Query Failed"); 
 
             if($result){
-                header("Location: edit-program.php");
+                header("Location: edit-program.php?id={$pid}&status={$status}");
             }
         }
         
