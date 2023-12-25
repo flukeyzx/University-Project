@@ -2,7 +2,7 @@
     include "../connection.php";
 
     $sql = "SELECT * FROM TrainingPrograms";
-    $result = sqlsrv_query($conn, $sql) or di("Query Failed");
+    $result = sqlsrv_query($conn, $sql) or die("Query Failed");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +31,7 @@
                 while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
             ?>
                 <div class="section">
+                    <a href="see-program.php?id=<?php echo $row['TP_ID'] ?>&tid=<?php echo $row['TrainerID'] ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                     <a href="delete-program.php?id=<?php echo $row['TP_ID'] ?>"><i class="fa-regular fa-trash-can"></i></a>
                     <p><?php echo $row['TP_ID'] ?></p>
                     <h1> <?php echo $row['Title'] ?></h1>
