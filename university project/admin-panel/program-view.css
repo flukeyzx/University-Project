@@ -1,7 +1,7 @@
 #wrapper {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
   margin-top: 6rem;
 }
@@ -9,7 +9,7 @@
 #wrapper .section {
   background: var(--light);
   padding: 1.2rem;
-  height: 28vh;
+  height: 40vh;
   text-align: center;
   border-radius: 1rem;
   box-shadow: 0.2rem 0.2rem 0.5rem #28282818;
