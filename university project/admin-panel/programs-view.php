@@ -1,8 +1,17 @@
 <?php 
     include "../connection.php";
 
+    if(isset($_GET['id']) && isset($_GET['status'])){
+        $id = $_GET['id'];
+        $status = $_GET['status'];
+
+        $query = "UPDATE TrainingPrograms SET Status = '$status' WHERE TP_ID = '$id'";
+        $query_result = sqlsrv_query($conn, $query) or die("Update Failed");
+    }
+
     $sql = "SELECT * FROM TrainingPrograms";
     $result = sqlsrv_query($conn, $sql) or die("Query Failed");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

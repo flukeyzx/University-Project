@@ -101,7 +101,7 @@
         $select = $_POST['select'];
         $status = $select;
 
-        header("Location: edit-program.php?id=$programId&status=$status");
+        header("Location: programs-view.php?id=$programId&status=$status");
     }
     sqlsrv_close($conn);
 ?>
