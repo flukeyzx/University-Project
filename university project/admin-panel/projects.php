@@ -1,8 +1,5 @@
 <?php
     include "../connection.php";
-
-    $sql = "SELECT * FROM INTERNS";
-    $result = sqlsrv_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +25,12 @@
     <div class="training-section">
         <h1>Create Project</h1>
         <div class="form-container">
-            <form action="" method="" class="training-form">
-                <label>Name</label>
-                <input type="text" name="name" required maxlength="80">
-                <label>Description</label>
-                <textarea cols="40" rows="6"></textarea>
+            <form action="projects.php" method="post" class="training-form">
+                <label>Id</label>
+                <input type="text" name="id" required maxlength="30">
+                <p id="error-2">This Id is already Taken.</p>
+                <label>Title</label>
+                <input type="text" name="title" required maxlength="80">
                 <label>Status</label>
                 <select name="status">
                     <option>Active</option>
@@ -46,8 +44,32 @@
                 <button type="submit" name="submit">Create</button>
             </form>
         </div>
-        <button class="view-btn">View projects</button>
+        <a href="projects-view.php"><button class="view-btn">View projects</button></a>
     </div> 
     
 </body>
 </html>
+
+
+<?php
+    if(isset($_POST['submit'])){
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $status = $_POST['status'];
+        $startDate = $_POST['start'];
+        $endDate = $_POST['end'];
+
+        $sql = "SELECT * FROM Interns_Projects WHERE ProjectID = '$id'";
+        $result = sqlsrv_query($conn, $sql);
+
+        if(sqlsrv_has_rows($result)){
+            ?> <style>#error-2{ display: block;} </style> <?php
+        } else {
+            $query = "INSERT INTO Interns_Projects
+                      VALUES ('$id', '$title', '$startDate', '$endDate', '$status')";
+            $stmt = sqlsrv_query($conn, $query);
+        }
+    }
+
+    sqlsrv_close($conn);
+?>
