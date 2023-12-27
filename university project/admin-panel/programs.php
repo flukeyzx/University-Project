@@ -33,6 +33,7 @@
                 <input type="text" name="title" required  maxlength="80">
                 <label>Trainer</label>
                 <input type="text" name="trainer" required maxlength="30">
+                <p id="error-3">This Trainer does not exists.</p>
                 <label>Status</label>
                 <select name="status">
                     <option>Active</option>
@@ -64,12 +65,17 @@
         $sql = "SELECT * FROM TrainingPrograms WHERE TP_ID = '$id'";
         $result = sqlsrv_query($conn, $sql);
 
+        $sql2 = "SELECT * FROM Trainer WHERE TrainerID = '$trainerId'";
+        $result2 = sqlsrv_query($conn, $sql2);
+
         if(sqlsrv_has_rows($result)){
             ?> <style>#error-2{ display: block;} </style> <?php
-        } else {
+        } else if(sqlsrv_has_rows($result2)) {
             $query = "INSERT INTO TrainingPrograms
                       VALUES ('$id', '$title', '$startDate', '$endDate', '$trainerId', '$status')";
             $stmt = sqlsrv_query($conn, $query);
+        } else {
+            ?> <style>#error-3{ display: block;} </style> <?php
         }
     }
 

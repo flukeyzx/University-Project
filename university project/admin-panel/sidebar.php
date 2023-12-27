@@ -47,13 +47,9 @@
             <span><i class="fa-solid fa-list-check"></i></span>
             <h3>Projects</h3>
         </a>
-        <a href="#">
-            <span><i class="fa-solid fa-bell"></i></span>
-            <h3>Notifications</h3>
-        </a>
-        <a href="#">
-            <span><i class="fa-solid fa-plus"></i></span>
-            <h3>Add User</h3>
+        <a href="projects.php" id="project">
+            <span><i class="fa-solid fa-circle-info"></i></span>
+            <h3>See Details</h3>
         </a>
         <a href="../signup.php">
             <span><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
