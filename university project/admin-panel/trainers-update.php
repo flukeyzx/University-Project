@@ -46,7 +46,7 @@
         <h1>Update Trainer</h1>
         <div class="form-container">
             <form action="update-trainer.php?id=<?php echo $row['TrainerID'] ?>" method="post" class="training-form">
-                <label>InternID</label>
+                <label>TrainerID</label>
                 <input type="text" name="id" disabled value="<?php echo $row['TrainerID'] ?>" maxlength="30">
                 <label>Name</label>
                 <input type="text" name="name" required value="<?php echo $row['Name'] ?>"  maxlength="50">

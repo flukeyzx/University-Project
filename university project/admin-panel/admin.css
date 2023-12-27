@@ -225,7 +225,7 @@ b {
 
 .main > .insights {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.6rem;
 }
 
@@ -261,6 +261,10 @@ b {
   font-size: 1.8rem;
 }
 
+.main .insights .section-5 h4 {
+  font-size: 1.8rem;
+}
+
 .main .insights div:hover {
   box-shadow: none;
   cursor: pointer;
@@ -271,15 +275,19 @@ b {
 }
 
 .main .insights .section-2 {
-  background-color: var(--warning);
+  background-color: rgba(64, 199, 226, 0.941);
 }
 
 .main .insights .section-3 {
-  background-color: var(--success);
+  background-color: #ef813df9;
 }
 
 .main .insights .section-4 {
-  background-color: #ef813df9;
+  background-color: var(--success);
+}
+
+.main .insights .section-5 {
+  background-color: var(--warning);
 }
 
 .section-1 .fa-magnifying-glass-chart {
@@ -314,10 +322,19 @@ b {
   font-size: 2.2rem;
 }
 
+.section-5 .fa-diagram-project {
+  background: var(--white);
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: var(--dark);
+  font-size: 2.2rem;
+}
+
 .insights > .section-1,
 .section-2,
 .section-3,
-.section-4 {
+.section-4,
+.section-5 {
   display: grid;
   align-items: center;
   box-shadow: var(--box-shadow);

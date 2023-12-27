@@ -47,7 +47,7 @@
             <span><i class="fa-solid fa-list-check"></i></span>
             <h3>Projects</h3>
         </a>
-        <a href="projects.php" id="project">
+        <a href="details.php" id="project">
             <span><i class="fa-solid fa-circle-info"></i></span>
             <h3>See Details</h3>
         </a>

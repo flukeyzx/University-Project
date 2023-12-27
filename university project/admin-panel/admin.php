@@ -77,8 +77,14 @@
 
                 <div class="section-4">
                     <i class="fa-solid fa-list-check"></i>
-                    <h4>Total Programs</h4>
+                    <h4>Total Projects</h4>
                     <h2><?php echo rowCount('TrainingPrograms') ?></h2>
+                </div>
+
+                <div class="section-5">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    <h4>Total Programs</h4>
+                    <h2><?php echo rowCount('Interns_Projects') ?></h2>
                 </div>
             </div>
             <div class="table-section">

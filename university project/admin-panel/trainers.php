@@ -46,7 +46,7 @@
                 <thead>
                     <tr>
                         <th>
-                            Intern Id
+                            Trainer Id
                         </th>
                         <th>
                             Name
