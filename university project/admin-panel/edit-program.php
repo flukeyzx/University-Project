@@ -46,7 +46,6 @@
             
 
             <div id="section">
-            <table>
                 <?php
                     if(isset($_POST['submit'])){
                         $search = $_POST['name'];
@@ -54,7 +53,7 @@
                         $sql = "SELECT * FROM Interns WHERE InternID = '$search'
                         OR Name LIKE '%$search%'";
                         $result = sqlsrv_query($conn, $sql);
-
+                        echo "<table>";
                         if($result){
                             if(sqlsrv_has_rows($result) > 0){
                                 echo '<thead>
@@ -81,7 +80,7 @@
                                  } else {
                                 echo "<h2 id='error'>Data Not Found.</h2>";
                             }
-
+                            echo "</table>";
 
                         }
                     }
