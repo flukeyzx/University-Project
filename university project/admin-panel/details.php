@@ -38,10 +38,10 @@
 
                         $query1 = "SELECT I.Name AS Name, D.Name AS Depart FROM Interns I 
                         INNER JOIN Department D ON I.DeptID = D.DeptID WHERE I.InternID = '$id'";
-                        $result1 = sqlsrv_query($conn, $query1);
+                        $result1 = sqlsrv_query($conn, $query1) or die("Query failed");
                         $row = sqlsrv_fetch_array($result1, SQLSRV_FETCH_ASSOC);
-
-                        echo "<h1 id='intern-title'>{$row['Name']} from {$row['Depart']}</h1>";
+                        if($row > 0) echo "<h1 id='intern-title'>{$row['Name']} from {$row['Depart']}</h1>";
+                        else echo "<h1 id='intern-title'>Id not found.</h1>";
                     }
                 ?>
             </div>   
