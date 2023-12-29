@@ -87,6 +87,7 @@
                     <h2><?php echo rowCount('Interns_Projects') ?></h2>
                 </div>
             </div>
+            <?php if(sqlsrv_has_rows($result) > 0) { ?>
             <div class="table-section">
                 <table>
                     <h1>Total Users</h1>
@@ -133,7 +134,7 @@
                     </tbody>
                        
                 </table>
-
+                <?php } else echo "<div id='no-data'>Data not found.</div>" ?>                
                 <?php 
                     $query = "SELECT COUNT(*) AS TotalRows FROM USERS";
                     $result_query = sqlsrv_query($conn, $query);

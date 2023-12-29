@@ -40,6 +40,7 @@
     <?php 
         include "sidebar.php";
     ?>
+        <?php if(sqlsrv_has_rows($result) > 0) { ?>
         <div class="table-section">
             <table>
                 <h1>Total Trainers</h1>
@@ -86,7 +87,8 @@
                 </tbody>
                 
             </table>
-
+            <?php } else echo "<div id='no-data'>Data not found.</div>" ?> 
+            
             <?php 
                     $query = "SELECT COUNT(*) AS TotalRows FROM Trainer";
                     $result_query = sqlsrv_query($conn, $query);

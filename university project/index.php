@@ -482,7 +482,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="col-form-label" >Phone:</label>
-                    <input type="tel" name="phone" class="form-control" id="phone" pattern="[0-9]+" placeholder="Enter your Phone number." required/>
+                    <input type="number" name="phone" class="form-control" id="phone" pattern="[0-9]+" placeholder="Enter your Phone number." required/>
                 </div>
                 <div class="mb-3">
                     <label for="department" class="col-form-label" required>Department:</label>

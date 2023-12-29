@@ -34,7 +34,7 @@
         <?php 
             include "sidebar.php";
         ?>
-
+        <?php if(sqlsrv_has_rows($result) > 0) { ?>
         <div id="wrapper">
             <?php
                 while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
@@ -58,6 +58,7 @@
                 }  
             ?>
         </div>
+        <?php } else echo "<div id='no-data'>Data not found.</div>" ?> 
     </div>  
 </body>
 </html>

@@ -27,6 +27,7 @@
         <?php 
             include "sidebar.php";
         ?>
+        <?php if(sqlsrv_has_rows($result)> 0) { ?>
         <div class="table-section">
             <table>
                 <h1>Total Requests</h1>
@@ -87,6 +88,7 @@
                 
                 
             </table>
+            <?php }  else echo "<div id='no-data'>Data not found.</div>"?>
         </div>
     </div>
     
