@@ -43,35 +43,49 @@
                         if($row > 0) {
                             echo "<h1 id='intern-title'>{$row['Name']} from {$row['Depart']}</h1>";
 
-                            $query2 = "SELECT COUNT(*) AS TotalProjects FROM Interns INNER JOIN I_Projects
-                                    ON Interns.InternID = I_Projects.InternID
-                                    WHERE I_Projects.InternID = '$id'";
-                            $result2 = sqlsrv_query($conn, $query2);
-                            $row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC);
-                            echo "<h1 id='intern-title' class='pro-title'>Total Projects : {$row2['TotalProjects']}</h1>"; 
-                            
-                            $query3 = "SELECT COUNT(*) AS TotalPrograms FROM Interns INNER JOIN Interns_Training_Program
-                                    ON Interns.InternID = Interns_Training_Program.InternID
-                                    WHERE Interns_Training_Program.InternID = '$id'";
-                            $result3 = sqlsrv_query($conn, $query3);
-                            $row3 = sqlsrv_fetch_array($result3, SQLSRV_FETCH_ASSOC);
-                            echo "<h1 id='intern-title' class='pro-title'>Total Programs : {$row3['TotalPrograms']}</h1>"; 
-
-                            $query4 = "SELECT COUNT(*) AS TotalTrainers FROM Interns INNER JOIN Interns_Trainers
-                                    ON Interns.InternID = Interns_Trainers.InternID
-                                    WHERE Interns_Trainers.InternID = '$id'";
-                            $result4 = sqlsrv_query($conn, $query4);
-                            $row4 = sqlsrv_fetch_array($result4, SQLSRV_FETCH_ASSOC);
-                            echo "<h1 id='intern-title' class='pro-title'>Total Trainers : {$row4['TotalTrainers']}</h1>"; 
-
                             $query5 = "SELECT Name FROM Trainer WHERE
                                        TrainerID IN (SELECT TrainerID FROM Interns_trainers WHERE InternID = '$id')";
                             $result5 =  sqlsrv_query($conn, $query5);
+
+                            $query6 = "SELECT Title FROM TrainingPrograms WHERE
+                                       TP_ID IN (SELECT TP_ID FROM Interns_Training_Program WHERE InternID ='$id')";
+                            $result6 =  sqlsrv_query($conn, $query6);
+
+                            $query7 = "SELECT Title FROM Interns_Projects WHERE
+                                       ProjectID IN (SELECT ProjectID FROM I_Projects WHERE InternID ='$id')";
+                            $result7 =  sqlsrv_query($conn, $query7);
+
                             echo  "<div id='details-section'>";
-                            while($row5 = sqlsrv_fetch_array($result5, SQLSRV_FETCH_ASSOC)){
-                                
-                            }  
-                            echo "</div>";        
+
+                            if(sqlsrv_has_rows($result5) > 0){
+                                echo "<div class='section'>";
+                                echo "<h1>Trainers</h1>";
+                                while($row5 = sqlsrv_fetch_array($result5, SQLSRV_FETCH_ASSOC)){
+                                    echo"<p>{$row5['Name']}</p>";
+                                }  
+                                echo "</div>"; 
+                            }
+
+                            
+                            if(sqlsrv_has_rows($result6) > 0){
+                                echo "<div class='section'>";
+                                echo "<h1>Programs</h1>";
+                                while($row6 = sqlsrv_fetch_array($result6, SQLSRV_FETCH_ASSOC)){
+                                    echo"<p>{$row6['Title']}</p>";
+                                } 
+                                echo "</div>"; 
+                            }
+                            
+                            if(sqlsrv_has_rows($result7) > 0){
+                                echo "<div class='section'>";
+                                echo "<h1>Programs</h1>";
+                                while($row7 = sqlsrv_fetch_array($result7, SQLSRV_FETCH_ASSOC)){
+                                    echo"<p>{$row7['Title']}</p>";
+                                } 
+                                echo "</div>";
+                            }
+                            echo "</div>"; 
+                                   
                         } 
 
                         else echo "<h1 id='intern-title'>Id not found.</h1>";
