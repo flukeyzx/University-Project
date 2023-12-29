@@ -30,9 +30,15 @@
 
         $sql = "SELECT Email FROM Requests WHERE Email = '$email' OR Phone = $phone";
         $result = sqlsrv_query($conn, $sql);
+        $sql2 = "SELECT Email FROM Interns WHERE Email = '$email' OR Phone = $phone";
+        $result2 = sqlsrv_query($conn, $sql2);
+        $sql3 = "SELECT Email FROM Trainer WHERE Email = '$email' OR Phone = $phone";
+        $result3 = sqlsrv_query($conn, $sql3);
         $rows = sqlsrv_has_rows($result);
+        $rows2 = sqlsrv_has_rows($result2);
+        $rows3 = sqlsrv_has_rows($result3);
 
-        if($rows > 0){
+        if($rows > 0 || $rows2 > 0 || $rows3 > 0){
             echo '<script>alert("This Email or Phone is already registered")</script>';
         } else {
             $query = "INSERT INTO Requests 
