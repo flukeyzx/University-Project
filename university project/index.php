@@ -473,16 +473,16 @@
                     <label for="name" class="col-form-label">
                     Name:
                     </label>
-                    <input type="text" name="username" class="form-control" id="name" placeholder="Enter your name." required value="<?php echo $_SESSION['name'] ?>"/>
+                    <input type="text" name="username" class="form-control" id="name" placeholder="Enter your name." required value="<?php echo $_SESSION['name'] ?>" maxlength="50"/>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="col-form-label" >Email:</label>
-                    <input type="email" name="userEmail" class="form-control" id="email" placeholder="Enter your email." required value="<?php echo $_SESSION['email'] ?>"/>
+                    <input type="email" name="userEmail" class="form-control" id="email" placeholder="Enter your email." required value="<?php echo $_SESSION['email'] ?>" maxlength="50"/>
                     <p class="email-error">This Email address is already in use.</p>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="col-form-label" >Phone:</label>
-                    <input type="number" name="phone" class="form-control" id="phone" pattern="[0-9]+" placeholder="Enter your Phone number." required/>
+                    <input type="number" name="phone" class="form-control" id="phone" pattern="[0-9]+" placeholder="Enter your Phone number." required maxlength="16"/>
                 </div>
                 <div class="mb-3">
                     <label for="department" class="col-form-label" required>Department:</label>

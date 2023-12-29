@@ -36,7 +36,7 @@
                 <input type="email" name="email" required maxlength="50">
                 <p id="error-3">This Email is already taken.</p>
                 <label>Phone</label>
-                <input type="tel" name="phone" required maxlength="15">
+                <input type="number" name="phone" required maxlength="16">
                 <p id="error-4">This Phone is already taken.</p>
                 <label for="department">Department</label>
                 <select name="department" id="department">

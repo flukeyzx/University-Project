@@ -53,7 +53,7 @@
                 <label>Email</label>
                 <input type="email" name="email" required value="<?php echo $row['Email'] ?>"  maxlength="50">
                 <label>Phone</label>
-                <input type="tel" name="phone" required value="<?php echo $row['Phone'] ?>" maxlength="15">
+                <input type="number" name="phone" required value="<?php echo $row['Phone'] ?>" maxlength="16">
                 <button type="submit" name="submit">Update</button>
             </form>
         </div>
